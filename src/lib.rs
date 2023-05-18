@@ -75,6 +75,11 @@ impl Matrix {
         &mut self.array[index * self.cols..(index + 1) * self.cols]
     }
 
+    // Returns an iterator over the rows.
+    pub fn row_chunks(&self) -> std::slice::Chunks<f64> {
+        self.array.chunks(self.cols)
+    }
+
     /// Get an owned `Vec` of the `index`th column.
     ///
     /// # Panics
