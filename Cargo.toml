@@ -1,0 +1,13 @@
+[package]
+name = "matrijs"
+version = "0.1.0"
+authors = ["Koen Westendorp"]
+edition = "2021"
+repository = "https://github.com/koenwestendorp/matrijs/"
+keywords = ["matrix", "linear_algebra"]
+categories = ["mathematics", "science"]
+license = "MIT"
+description = "A small 2D matrix library. There are many like it but this one is mine."
+
+[dependencies]
+# None :)
