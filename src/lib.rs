@@ -41,14 +41,16 @@ impl Matrix {
         self.rows
     }
 
+    /// Returns the shape of this [`Matrix`] as a tuple of (`rows`, `cols`).
+    pub fn shape(&self) -> (usize, usize) {
+        (self.rows, self.cols)
+    }
+
     /// Returns a reference to the internal array of this [`Matrix`].
     pub fn array(&self) -> &[F] {
         &self.array
     }
 
-    /// Returns the shape of this [`Matrix`] as a tuple of (`cols`, `rows`).
-    pub fn shape(&self) -> (usize, usize) {
-        (self.cols, self.rows)
     }
 }
 
