@@ -191,10 +191,9 @@ impl Matrix {
         let new_cols = self.cols + 1;
 
         let mut new_array = Vec::with_capacity(new_cols * self.rows);
-        for i in 0..self.rows {
-            let old_row = self.row(i);
+        for (old_row, col_entry) in self.row_chunks().zip(col) {
             new_array.extend_from_slice(old_row);
-            new_array.push(col[i])
+            new_array.push(*col_entry)
         }
 
         self.cols += 1;
