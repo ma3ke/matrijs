@@ -1,6 +1,6 @@
 # Matr<sub><i>ij</i></sub>s 🔢
 
-A small 2D matrix library.
+A small 2D f64 matrix library.
 
 There are many like it, but this one is mine.
 

@@ -413,7 +413,7 @@ mod tests {
         let _m = Matrix::new(2, 3, &[0.0, 1.0, 2.0, 3.0, 4.0, 5.0]);
         let _o = Matrix::zero(2, 3);
         let _l = Matrix::one(2, 3);
-        let _v = Matrix::with_value(2, 3, std::f32::consts::PI);
+        let _v = Matrix::with_value(2, 3, std::f64::consts::PI);
         let _i = Matrix::identity(2);
         let _d = Matrix::diagonal(&[0.0, 1.0, 2.0, 3.0]);
     }
