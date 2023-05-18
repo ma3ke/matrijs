@@ -88,6 +88,15 @@ impl Matrix {
             .copied()
             .collect()
     }
+
+    /// Get a `Vec` of mutable entries of the `index`th column.
+    pub fn col_mut(&mut self, index: usize) -> Vec<&mut F> {
+        self.array
+            .iter_mut()
+            .skip(index)
+            .step_by(self.cols)
+            .collect()
+    }
 }
 
 impl Matrix {
