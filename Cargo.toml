@@ -1,6 +1,6 @@
 [package]
 name = "matrijs"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Koen Westendorp"]
 edition = "2021"
 repository = "https://github.com/koenwestendorp/matrijs/"
