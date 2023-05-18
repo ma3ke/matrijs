@@ -355,7 +355,7 @@ impl Add for Matrix {
             .zip(rhs.array())
             .for_each(|(a, b)| *a += b);
 
-        return self;
+        self
     }
 }
 
@@ -370,7 +370,7 @@ impl Sub for Matrix {
             .zip(rhs.array())
             .for_each(|(a, b)| *a -= b);
 
-        return self;
+        self
     }
 }
 
@@ -385,7 +385,7 @@ impl Div for Matrix {
             .zip(rhs.array())
             .for_each(|(a, b)| *a /= b);
 
-        return self;
+        self
     }
 }
 
@@ -404,7 +404,7 @@ impl Mul for Matrix {
             .zip(rhs.array())
             .for_each(|(a, b)| *a *= b);
 
-        return self;
+        self
     }
 }
 
