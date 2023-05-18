@@ -30,21 +30,21 @@ assert_eq!(a.dot(b), Matrix::new(2, 3, &[7.0, 8.0, 9.0,  29.0, 34.0, 39.0]));
 ## Abilities
 
 - Creation
-    - From array: `Matrix::new(3, 2, &[0.0, 1.0,  2.0, 3.0,  4.0, 5.0])`
-    - With value: `Matrix::with_value(3, 16.1)`
-    - Zeros: `Matrix::zero(3)`
-    - Ones: `Matrix::one(3)`
-    - Identity: `Matrix::identity(3)`
-    - Diagonal: `Matrix::diagonal(&[1.0, 3.0, 1.0, 2.0])`
+    - From array: `Matrix::new(3, 2, &[0.0, 1.0,  2.0, 3.0,  4.0, 5.0])`{.language-source-rust}
+    - With value: `Matrix::with_value(3, 16.1)`{.language-source-rust}
+    - Zeros: `Matrix::zero(3)`{.language-source-rust}
+    - Ones: `Matrix::one(3)`{.language-source-rust}
+    - Identity: `Matrix::identity(3)`{.language-source-rust}
+    - Diagonal: `Matrix::diagonal(&[1.0, 3.0, 1.0, 2.0])`{.language-source-rust}
 - Operations
     - Transpose
-        - In place: `m.transpose();`
-        - By value: `m.t()`
+        - In place: `m.transpose();`{.language-source-rust}
+        - By value: `m.t()`{.language-source-rust}
     - Scalar operations
-        - Addition, subtraction, multiplication, division: `b = a + 1.0`, `b *= 2`
+        - Addition, subtraction, multiplication, division: `b = a + 1.0`, `b *= 2`{.language-source-rust}
     - Matrix-matrix operations
-        - Entry-by-entry addition, subtraction, multiplication, division: `a + b`
-        - Dot product: `a.dot(b)`
+        - Entry-by-entry addition, subtraction, multiplication, division: `a + b`{.language-source-rust}
+        - Dot product: `a.dot(b)`{.language-source-rust}
 
 ## Implementation
 
