@@ -18,7 +18,8 @@ type F = f32;
 ///
 /// # Note
 ///
-/// The implementation is row-major, at the moment.
+/// The implementation is row-major. That is to say that the elements are stored as contiguous rows
+/// in the internal representation.
 pub struct Matrix {
     cols: usize,
     rows: usize,
