@@ -75,7 +75,7 @@ impl Matrix {
         &mut self.array[index * self.cols..(index + 1) * self.cols]
     }
 
-    /// Get an owned Vec of the `index`th column.
+    /// Get an owned `Vec` of the `index`th column.
     ///
     /// # Panics
     ///
