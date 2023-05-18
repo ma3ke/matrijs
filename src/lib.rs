@@ -156,6 +156,42 @@ impl Matrix {
     }
 }
 
+#[macro_export]
+macro_rules! matrix {
+    // Matrix.
+    [$( $( $x:expr ),+ );+ $(,)?] => {
+        {
+            let mut rows = Vec::new();
+            $(
+                rows.push(vec![$($x,)*]);
+            )*
+
+            let r = rows.len();
+            let c = rows[0].len();
+            rows.iter()
+                .for_each(|row|
+                    if row.len() != c {
+                        panic!(
+                            "found row of length {}, expected {c}, \
+                                since all rows must have the same length",
+                            row.len()
+                        )
+                    }
+                );
+            let arr : Vec<_> = rows.into_iter().flatten().collect();
+
+            Matrix::new(r, c, &arr)
+        }
+    };
+    // Row vector.
+    ($( $x:expr ),+ $(,)?) => {
+        {
+            let arr = &[$( $x ),*];
+            Matrix::new(1, arr.len(), arr)
+        }
+    };
+}
+
 impl Matrix {
     /// Transpose a [`Matrix`] in place.
     pub fn transpose(&mut self) {
@@ -489,6 +525,15 @@ mod tests {
         let _v = Matrix::with_value(2, 3, std::f64::consts::PI);
         let _i = Matrix::identity(2);
         let _d = Matrix::diagonal(&[0.0, 1.0, 2.0, 3.0]);
+    }
+
+    #[test]
+    fn macro_creation() {
+        let row = matrix!(0.0, 1.0, 2.0);
+        assert_eq!(row, Matrix::new(1, 3, &[0.0, 1.0, 2.0]));
+
+        let mat = matrix![0.0, 1.0, 2.0; 3.0, 4.0, 5.0];
+        assert_eq!(mat, Matrix::new(2, 3, &[0.0, 1.0, 2.0, 3.0, 4.0, 5.0]));
     }
 
     #[test]
