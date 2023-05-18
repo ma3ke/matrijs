@@ -4,27 +4,51 @@ A small 2D f64 matrix library.
 
 There are many like it, but this one is mine.
 
+_Note: The example below can be found in `examples/basic.rs`._
+
 ```rust
-use matrijs::Matrix;
+// The matrix! macro allows for quick initialization.
 
 // m = | 0.0  1.0 |
 //     |-1.0  0.0 |
-let mut m = Matrix::new(2, 2, &[0.0, 1.0,  -1.0, 0.0]);
+let mut m = matrix![0.0, 1.0; -1.0, 0.0];
+
+// Scalar math.
 m += 1.0;
-assert_eq!(m, Matrix::new(2, 2, &[1.0, 2.0,  0.0, 1.0]));
+m *= -10.0;
+
+// You can also create a Matrix manually.
+let m_expected = Matrix::new(2, 2, &[-10.0, -20.0, 0.0, -10.0]);
+assert_eq!(m, m_expected);
 
 // a = | 0.0  1.0 |
 //     | 2.0  3.0 |
 // b = | 4.0  5.0  6.0 |
 //     | 7.0  8.0  9.0 |
-let a = Matrix::new(2, 2, &[0.0, 1.0, 2.0, 3.0]);
-let b = Matrix::new(2, 3, &[4.0, 5.0, 6.0,  7.0, 8.0, 9.0]);
+let a = matrix![0.0, 1.0; 2.0, 3.0];
+let b = matrix![4.0, 5.0, 6.0; 7.0, 8.0, 9.0];
 
-// Multiplication of `i` and `a` should be idempotent.
+// The dot product of `i` and `a` should be equal to `a` (idempotence).
 let i = Matrix::identity(2);
 assert_eq!(i.dot(&a), a);
 
-assert_eq!(a.dot(&b), Matrix::new(2, 3, &[7.0, 8.0, 9.0,  29.0, 34.0, 39.0]));
+assert_eq!(a.dot(&b), matrix![7.0, 8.0, 9.0; 29.0, 34.0, 39.0]);
+
+// You can append rows and columns to expand what you're working with.
+let mut ones = Matrix::one(2, 2);
+ones.append_row(matrix![0.0, 0.0].array());
+
+assert_eq!(
+    ones,
+    matrix![
+        1.0, 1.0;
+        1.0, 1.0;
+        0.0, 0.0
+    ]
+);
+
+// When in doubt, take a look at the shape of the matrix.
+assert_eq!(ones.shape(), (3, 2)) // 3 rows, 2 columns
 ```
 
 ## Abilities
