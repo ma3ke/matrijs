@@ -81,12 +81,12 @@ impl Matrix {
     ///
     /// If `index` >= `cols`, this function will panic.
     pub fn col(&self, index: usize) -> Vec<F> {
-        let mut col = Vec::with_capacity(self.rows);
-        for i in 0..self.rows {
-            col.push(self[(i, index)])
-        }
-
-        col
+        self.array
+            .iter()
+            .skip(index)
+            .step_by(self.cols)
+            .copied()
+            .collect()
     }
 }
 
