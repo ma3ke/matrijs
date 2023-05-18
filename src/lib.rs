@@ -51,6 +51,8 @@ impl Matrix {
         &self.array
     }
 
+    pub fn array_mut(&mut self) -> &mut Vec<F> {
+        &mut self.array
     }
 }
 
