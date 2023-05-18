@@ -298,11 +298,22 @@ impl DivAssign<F> for Matrix {
 
 /* matrix operations */
 
+macro_rules! assert_same_size {
+    ($a:ident, $b:ident) => {
+        assert_eq!(
+            $a.shape(),
+            $b.shape(),
+            "matrices must be of same size to do an entry-by-entry operation"
+        )
+    };
+}
+
 impl Add for Matrix {
     type Output = Self;
 
     fn add(mut self, rhs: Self) -> Self::Output {
-        // FIXME: Check sizes.
+        assert_same_size!(self, rhs);
+
         self.array
             .iter_mut()
             .zip(rhs.array())
@@ -316,7 +327,8 @@ impl Sub for Matrix {
     type Output = Self;
 
     fn sub(mut self, rhs: Self) -> Self::Output {
-        // FIXME: Check sizes.
+        assert_same_size!(self, rhs);
+
         self.array
             .iter_mut()
             .zip(rhs.array())
@@ -330,7 +342,8 @@ impl Div for Matrix {
     type Output = Self;
 
     fn div(mut self, rhs: Self) -> Self::Output {
-        // FIXME: Check sizes.
+        assert_same_size!(self, rhs);
+
         self.array
             .iter_mut()
             .zip(rhs.array())
@@ -348,7 +361,8 @@ impl Mul for Matrix {
     ///
     /// This is a entry by entry multiplication, not a dot product or cross product.
     fn mul(mut self, rhs: Self) -> Self::Output {
-        // FIXME: Check sizes.
+        assert_same_size!(self, rhs);
+
         self.array
             .iter_mut()
             .zip(rhs.array())
@@ -560,6 +574,15 @@ mod tests {
         m.transpose();
         // m should be transposed, now.
         assert_eq!(m, m_t_manual);
+    }
+
+    #[test]
+    #[should_panic]
+    fn bad_math() {
+        let a = Matrix::one(8, 8);
+        let b = Matrix::one(3, 6);
+
+        let _c = a + b;
     }
 
     #[test]
