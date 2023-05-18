@@ -18,7 +18,7 @@ type F = f32;
 ///
 /// # Note
 ///
-/// The implementation is row-major. That is to say that the elements are stored as contiguous rows
+/// The implementation is row-major. That is to say that the entries are stored as contiguous rows
 /// in the internal representation.
 pub struct Matrix {
     cols: usize,
@@ -198,7 +198,7 @@ impl Matrix {
 impl Index<(usize, usize)> for Matrix {
     type Output = F;
 
-    /// Get element by `(row, col)`.
+    /// Get entry by `(row, col)`.
     fn index(&self, index: (usize, usize)) -> &Self::Output {
         let (row, col) = index;
         &self.row(row)[col]
@@ -206,7 +206,7 @@ impl Index<(usize, usize)> for Matrix {
 }
 
 impl IndexMut<(usize, usize)> for Matrix {
-    /// Get mutable element by `(row, col)`.
+    /// Get mutable entry by `(row, col)`.
     fn index_mut(&mut self, index: (usize, usize)) -> &mut Self::Output {
         let (row, col) = index;
         &mut self.row_mut(row)[col]
@@ -219,7 +219,7 @@ impl Add<F> for Matrix {
     type Output = Self;
 
     fn add(mut self, rhs: F) -> Self::Output {
-        self.array.iter_mut().for_each(|elem| *elem += rhs);
+        self.array.iter_mut().for_each(|entry| *entry += rhs);
         self
     }
 }
@@ -228,7 +228,7 @@ impl Sub<F> for Matrix {
     type Output = Self;
 
     fn sub(mut self, rhs: F) -> Self::Output {
-        self.array.iter_mut().for_each(|elem| *elem -= rhs);
+        self.array.iter_mut().for_each(|entry| *entry -= rhs);
         self
     }
 }
@@ -237,7 +237,7 @@ impl Mul<F> for Matrix {
     type Output = Self;
 
     fn mul(mut self, rhs: F) -> Self::Output {
-        self.array.iter_mut().for_each(|elem| *elem *= rhs);
+        self.array.iter_mut().for_each(|entry| *entry *= rhs);
         self
     }
 }
@@ -246,32 +246,32 @@ impl Div<F> for Matrix {
     type Output = Self;
 
     fn div(mut self, rhs: F) -> Self::Output {
-        self.array.iter_mut().for_each(|elem| *elem /= rhs);
+        self.array.iter_mut().for_each(|entry| *entry /= rhs);
         self
     }
 }
 
 impl AddAssign<F> for Matrix {
     fn add_assign(&mut self, rhs: F) {
-        self.array.iter_mut().for_each(|elem| *elem += rhs)
+        self.array.iter_mut().for_each(|entry| *entry += rhs)
     }
 }
 
 impl SubAssign<F> for Matrix {
     fn sub_assign(&mut self, rhs: F) {
-        self.array.iter_mut().for_each(|elem| *elem -= rhs)
+        self.array.iter_mut().for_each(|entry| *entry -= rhs)
     }
 }
 
 impl MulAssign<F> for Matrix {
     fn mul_assign(&mut self, rhs: F) {
-        self.array.iter_mut().for_each(|elem| *elem *= rhs)
+        self.array.iter_mut().for_each(|entry| *entry *= rhs)
     }
 }
 
 impl DivAssign<F> for Matrix {
     fn div_assign(&mut self, rhs: F) {
-        self.array.iter_mut().for_each(|elem| *elem /= rhs)
+        self.array.iter_mut().for_each(|entry| *entry /= rhs)
     }
 }
 
@@ -325,7 +325,7 @@ impl Mul for Matrix {
 
     /// # Note
     ///
-    /// This is a element by element multiplication, not a dot product or cross product.
+    /// This is a entry by entry multiplication, not a dot product or cross product.
     fn mul(mut self, rhs: Self) -> Self::Output {
         // FIXME: Check sizes.
         self.array
@@ -439,7 +439,7 @@ mod tests {
     #[test]
     #[should_panic]
     fn creation_too_long() {
-        // arr has 6 elements, not 2 * 2 == 4. Creating a 2 by 2 matrix from arr should thus panic.
+        // arr has 6 entries, not 2 * 2 == 4. Creating a 2 by 2 matrix from arr should thus panic.
         let arr = &[0.0, 1.0, 2.0, 3.0, 4.0, 5.0];
         let _m = Matrix::new(2, 2, arr);
     }
