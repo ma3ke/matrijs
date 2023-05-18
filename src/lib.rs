@@ -361,9 +361,9 @@ impl Matrix {
     ///
     /// // Multiplication of `i` and `a` should be idempotent.
     /// let i = Matrix::identity(2);
-    /// assert_eq!(i.clone().dot(a.clone()), a);
+    /// assert_eq!(i.dot(&a), a);
     ///
-    /// assert_eq!(a.dot(b), Matrix::new(2, 3, &[7.0, 8.0, 9.0,  29.0, 34.0, 39.0]));
+    /// assert_eq!(a.dot(&b), Matrix::new(2, 3, &[7.0, 8.0, 9.0,  29.0, 34.0, 39.0]));
     /// ```
     ///
     /// # Panics
@@ -376,9 +376,9 @@ impl Matrix {
     /// let e = Matrix::one(3, 4);
     /// let f = Matrix::one(3, 2);
     ///
-    /// e.dot(f);
+    /// e.dot(&f);
     /// ```
-    pub fn dot(self, rhs: Self) -> Self {
+    pub fn dot(&self, rhs: &Self) -> Self {
         assert_eq!(self.cols, rhs.rows);
 
         let m = self.rows;

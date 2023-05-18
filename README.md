@@ -22,9 +22,9 @@ let b = Matrix::new(2, 3, &[4.0, 5.0, 6.0,  7.0, 8.0, 9.0]);
 
 // Multiplication of `i` and `a` should be idempotent.
 let i = Matrix::identity(2);
-assert_eq!(i.clone().dot(a.clone()), a);
+assert_eq!(i.dot(&a), a);
 
-assert_eq!(a.dot(b), Matrix::new(2, 3, &[7.0, 8.0, 9.0,  29.0, 34.0, 39.0]));
+assert_eq!(a.dot(&b), Matrix::new(2, 3, &[7.0, 8.0, 9.0,  29.0, 34.0, 39.0]));
 ```
 
 ## Abilities
@@ -44,7 +44,7 @@ assert_eq!(a.dot(b), Matrix::new(2, 3, &[7.0, 8.0, 9.0,  29.0, 34.0, 39.0]));
         - Addition, subtraction, multiplication, division: `b = a + 1.0`, `b *= 2`
     - Matrix-matrix operations
         - Entry-by-entry addition, subtraction, multiplication, division: `a + b`
-        - Dot product: `a.dot(b)`
+        - Dot product: `a.dot(&b)`
 
 ## Implementation
 
