@@ -1,6 +1,6 @@
 use std::ops::{Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Sub, SubAssign};
 
-type F = f32;
+type F = f64;
 
 #[derive(Debug, Clone, PartialEq)]
 /// A 2-dimensional matrix.
