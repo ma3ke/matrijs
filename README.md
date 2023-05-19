@@ -51,7 +51,7 @@ assert_eq!(
 assert_eq!(ones.shape(), (3, 2)) // 3 rows, 2 columns
 ```
 
-## Abilities
+## Features
 
 - Creation
     - From array: `Matrix::new(3, 2, &[0.0, 1.0,  2.0, 3.0,  4.0, 5.0])`
@@ -65,9 +65,13 @@ assert_eq!(ones.shape(), (3, 2)) // 3 rows, 2 columns
         - In place: `m.transpose();`
         - By value: `m.t()`
     - Scalar operations
-        - Addition, subtraction, multiplication, division: `b = a + 1.0`, `b *= 2`
+        - Addition, subtraction, multiplication, division:
+
+          `b = a + 1.0`, `b *= 2`
     - Matrix-matrix operations
-        - Entry-by-entry addition, subtraction, multiplication, division: `a + b`
+        - Entry-by-entry addition, subtraction, multiplication, division:
+
+          `a + b`
         - Dot product: `a.dot(&b)`
 
 ## Implementation
